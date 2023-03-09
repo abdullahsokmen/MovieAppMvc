@@ -34,6 +34,7 @@ public class UserController {
         try {
             LoginResponseDto responseDto=userService.login(dto);
             //modelAndView.addObject("result",responseDto.getName()+"--"+" Giriş başarılı");
+            modelAndView.addObject("userId",responseDto.getId());
             modelAndView.setViewName("redirect:/movie/findall");
         }catch (Exception e){
             e.printStackTrace();
