@@ -39,7 +39,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
                 </li>
-                <li th:if="${user.id!=null}" class="nav-item dropdown">
+                <li th:if="${user!=null}" class="nav-item dropdown">
                     <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
                        role="button">
                         <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle"
@@ -57,7 +57,7 @@
                         <a th:href=${'/login'}  class="btn btn-danger" >Logout</a>
                     </ul>
                 </li>
-                <a th:href=${'/login'} th:if="${user.id==null}" class="btn btn-success mx-3 my-1" >Login</a>
+                <a th:href=${'/login'} th:if="${user==null}" class="btn btn-success mx-3 my-1" >Login</a>
 
             </ul>
         </div>
@@ -104,8 +104,8 @@
 
 
                     <div class="other-buttons">
-                        <a   type="button"><i style="font-size:2.2rem" class="fa-regular fa-heart"></i></a>
-                        <a    type="button"> <i style="font-size: 2.2rem;color: red" class="fa-solid fa-heart"></i></a>
+                        <a type="button"><i style="font-size:2.2rem" class="fa-regular fa-heart"></i></a>
+                        <a type="button"> <i style="font-size: 2.2rem;color: red" class="fa-solid fa-heart"></i></a>
                     </div>
 
                 </div>
@@ -116,14 +116,14 @@
 
         </div>
         <div class="container comment my-3  bg-light d-flex flex-column align-items-center w-100">
-            <form method="post" action="/moviecomment/save"   class="commentpost my-5 d-flex flex-column align-items-center  w-75">
+            <form method="post" action="/moviecomment/save" class="commentpost my-5 d-flex flex-column align-items-center  w-75">
                 <div class="row my-3 p-2 w-100">
                     <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
                         class=" mx-1 col-2 img-thumbnail rounded-start" alt="...">
                     <textarea name="content" placeholder="Yorum paylaş" class="col-9 mx-1" style="resize: none" cols="7"
                         rows="2"></textarea>
-                    <input hidden="hidden" name="userId" >
-                    <input hidden="hidden" name="movieId" >
+                    <input hidden="hidden" th:value="${user.id}" name="userId" >
+                    <input hidden="hidden" th:value="${movie.id}" name="movieId">
                 </div>
 
                 <button type="submit" class="btn btn-primary w-25 align-self-end mb-2 mx-3">Paylaş</button>
